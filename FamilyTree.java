@@ -42,8 +42,8 @@ public static void main(String[] args) throws FileNotFoundException {
             }
           }
           
-         parents p = new parents(FamTree); //This class will create three array lists in which each element corresponding to any list will have the same index of another related element in other lists, weither
-                                           //it is Mother or Father.
+         Person p = new Person(FamTree); //This class will create three array lists in which each element corresponding to any list will have the same index of another related element in other lists, whether
+                                         //it is Mother or Father.
 
          System.out.println("The following list provides you with different names to choose from in order to give you a short family tree:\n"
          + p.getChildren() + "\nWrite 0 when done\nPlease pick a name:\n");
@@ -53,7 +53,7 @@ public static void main(String[] args) throws FileNotFoundException {
          while (con.hasNextLine()) {
             String n = con.nextLine();
             while (!p.getChildren().contains(n) && !n.equals("0")) {
-               System.out.println("The entry provided does not have any records. Please make sure it is present in the list provided and is written properly");
+               System.out.println("The entry provided does not have any records. Please make sure it is present in the list provided and is written properly or enter 0 to end the program");
                n = con.nextLine();
                }  
         if (n.equals("0")) {
@@ -68,7 +68,7 @@ public static void main(String[] args) throws FileNotFoundException {
             if (p.getMothers().contains(n)) {
                 x1 = p.getMothers().indexOf(n); //Index of the first occurence of the provided name in the mother list
                 x2 = p.getMothers().lastIndexOf(n); //Index of the last occurence of the provided name in the mother list
-                System.out.println("\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
+                System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
                   +"Children:");
                       for (int i=x1 ; i<=x2 ; i++) {
                               System.out.println("\t"+p.getChildren().get(i));
@@ -81,7 +81,7 @@ public static void main(String[] args) throws FileNotFoundException {
                      if (p.getFathers().contains(n)) {
                         y1 = p.getFathers().indexOf(n); //Index of the first occurence of the provided name in the Father list
                         y2 = p.getFathers().lastIndexOf(n); //Index of the last occurence of the provided name in the Father list
-                        System.out.println("\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
+                        System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
                         +"Children:");
                            for (int i=y1 ; i<=y2 ; i++) {
                               System.out.println("\t"+p.getChildren().get(i));
@@ -89,8 +89,8 @@ public static void main(String[] args) throws FileNotFoundException {
                        System.out.println("\nHere is the list to keep track of available names: \n"+p.getChildren()); 
                       }
                            else
-                              System.out.println("\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+
-                              "\n"+"\nChildren:\n\tNo Children."+"\nHere is the list to keep track of available names: \n"+p.getChildren());
+                              System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+
+                              "\n"+"Children:\n\tNo Children."+"\nHere is the list to keep track of available names: \n"+p.getChildren());
          }
 
       } 
