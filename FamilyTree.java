@@ -1,3 +1,10 @@
+/*CS 211(B)
+Spring 2020
+4/20/2020
+Majd Chalak, Abdalrahman Shaath, Joey Helf, Richard Le
+This file is meant to create a program that inputs a file of names, prompts for user input, and outputs a family lineage.
+*/
+
 import java.util.*;
 import java.io.*;
 
@@ -9,11 +16,11 @@ public static void main(String[] args) throws FileNotFoundException {
    //Second list will contain each of these people's names followed by their mother's and their father's name respectively
    //That is the list that will be then used to solve the project
    
-   ArrayList<String> Names = new ArrayList<String>();
-   ArrayList<String> FamTree = new ArrayList<String>();
+   ArrayList<String> names = new ArrayList<String>();
+   ArrayList<String> famTree = new ArrayList<String>();
    
    //First we will introduce the source of the file we will scan from
-   File source = new File("C:\\Users\\Majd\\Desktop\\Bellevue College\\5th Spring Quarter 2020\\CS 211\\Project#1\\tudor.dat");
+   File source = new File("tudor.dat");
    
    //Now we will create the scanner that will scan from that specific file.
    Scanner fileReader = new Scanner(source);
@@ -26,23 +33,23 @@ public static void main(String[] args) throws FileNotFoundException {
           
           if (c!=1) 
           {
-            Names.add(s);
+            names.add(s);
                 if (s.equalsIgnoreCase("end")) 
                 {
                 c=1;
-                Names.remove(s);
+                names.remove(s);
                 }
            }
             else {
             
-            FamTree.add(s);
+            famTree.add(s);
             if (s.equalsIgnoreCase("end")) {
-               FamTree.remove(s);
+               famTree.remove(s);
                }  
             }
           }
           
-         Person p = new Person(FamTree); //This class will create three array lists in which each element corresponding to any list will have the same index of another related element in other lists, whether
+         Parents p = new Parents(FamTree); //This class will create three array lists in which each element corresponding to any list will have the same index of another related element in other lists, whether
                                          //it is Mother or Father.
 
          System.out.println("The following list provides you with different names to choose from in order to give you a short family tree:\n"
@@ -63,11 +70,11 @@ public static void main(String[] args) throws FileNotFoundException {
          int z = p.getChildren().indexOf(n); //Denoting the index corresponding to the name n.
          int x1,x2 = 0;
          int y1,y2 = 0;
-         ArrayList<String> ChildAllocation = new ArrayList<String>();
+         ArrayList<String> childAllocation = new ArrayList<String>();
          
             if (p.getMothers().contains(n)) {
-                x1 = p.getMothers().indexOf(n); //Index of the first occurence of the provided name in the mother list
-                x2 = p.getMothers().lastIndexOf(n); //Index of the last occurence of the provided name in the mother list
+                x1 = p.getMothers().indexOf(n); //Index of the first occurrence of the provided name in the mother list
+                x2 = p.getMothers().lastIndexOf(n); //Index of the last occurrence of the provided name in the mother list
                 System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
                   +"Children:");
                       for (int i=x1 ; i<=x2 ; i++) {
@@ -79,8 +86,8 @@ public static void main(String[] args) throws FileNotFoundException {
                    else
          
                      if (p.getFathers().contains(n)) {
-                        y1 = p.getFathers().indexOf(n); //Index of the first occurence of the provided name in the Father list
-                        y2 = p.getFathers().lastIndexOf(n); //Index of the last occurence of the provided name in the Father list
+                        y1 = p.getFathers().indexOf(n); //Index of the first occurrence of the provided name in the father list
+                        y2 = p.getFathers().lastIndexOf(n); //Index of the last occurrence of the provided name in the father list
                         System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
                         +"Children:");
                            for (int i=y1 ; i<=y2 ; i++) {
@@ -95,4 +102,6 @@ public static void main(String[] args) throws FileNotFoundException {
 
       } 
 }
+
+
 
