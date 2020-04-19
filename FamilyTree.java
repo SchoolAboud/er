@@ -42,8 +42,11 @@ public static void main(String[] args) throws FileNotFoundException {
             }
           }
           
-         Person p = new Person(FamTree); //This class will create three array lists in which each element corresponding to any list will have the same index of another related element in other lists, whether
-                                         //it is Mother or Father.
+         Person p = new Person(FamTree); /*This class will create three array lists in which each element corresponding to 
+                                         any list will have the same index of another related element in other lists, 
+                                         whether it is Mother or Father. For example, a mother's name in the mother's list will have index i,
+                                         that index i will be the same for her child. If she has more than one child, 
+                                         her name will re-occur in the mother's list and each occurence will correspond to her child. Same goes to the fathers' names.*/ 
 
          System.out.println("The following list provides you with different names to choose from in order to give you a short family tree:\n"
          + p.getChildren() + "\nWrite 0 when done\nPlease pick a name:\n");
@@ -52,47 +55,47 @@ public static void main(String[] args) throws FileNotFoundException {
   
          while (con.hasNextLine()) {
             String n = con.nextLine();
-            while (!p.getChildren().contains(n) && !n.equals("0")) {
+            while (!p.getChildren().contains(n) && !n.equals("0")) { //While the entry provided by the user is not a name which paternal and maternal lines are available
+                                                                     //And while the entry is not 0, a prompt will ask the user to re-enter another name or exit the program
                System.out.println("The entry provided does not have any records. Please make sure it is present in the list provided and is written properly or enter 0 to end the program");
                n = con.nextLine();
                }  
-        if (n.equals("0")) {
+        if (n.equals("0")) { //If the user enters 0, the code will end
         System.out.println("Thank you!");
         break;
          } 
          int z = p.getChildren().indexOf(n); //Denoting the index corresponding to the name n.
-         int x1,x2 = 0;
-         int y1,y2 = 0;
+
          ArrayList<String> ChildAllocation = new ArrayList<String>();
          
-            if (p.getMothers().contains(n)) {
-                x1 = p.getMothers().indexOf(n); //Index of the first occurence of the provided name in the mother list
-                x2 = p.getMothers().lastIndexOf(n); //Index of the last occurence of the provided name in the mother list
-                System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
+            //We will conduct two if statements, in which we will check if the provided name got listed as mother or father in the "Person" class created
+            
+            if (p.getMothers().contains(n)) { //In case the name provided is a mother
+                   System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
                   +"Children:");
-                      for (int i=x1 ; i<=x2 ; i++) {
-                              System.out.println("\t"+p.getChildren().get(i));
+            for(int i=0 ; i<p.getMothers().size() ; i++) //A for loop checking each index of the mother's name then printing the corresponding child name bearing that index
+               if(p.getMothers().get(i).equals(n)) {     
+                                         System.out.println("\t"+p.getChildren().get(i));
                                          }
 
-                 System.out.println("\nHere is the list to keep track of available names: \n"+p.getChildren()); 
+                 System.out.println("\nHere is the list to keep track of available names: \n"+p.getChildren()); //Providing the user with the list of available names to check family tree
                }
                    else
          
-                     if (p.getFathers().contains(n)) {
-                        y1 = p.getFathers().indexOf(n); //Index of the first occurence of the provided name in the Father list
-                        y2 = p.getFathers().lastIndexOf(n); //Index of the last occurence of the provided name in the Father list
-                        System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
-                        +"Children:");
-                           for (int i=y1 ; i<=y2 ; i++) {
-                              System.out.println("\t"+p.getChildren().get(i));
-                                       }
-                       System.out.println("\nHere is the list to keep track of available names: \n"+p.getChildren()); 
-                      }
-                           else
+                 if (p.getFathers().contains(n)) { //In case the provided name is a father
+                     System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+"\n"
+                     +"Children:");
+                 for(int i=0 ; i<p.getFathers().size() ; i++) //A for loop checking each index of the father's name then printing the corresponding child name bearing that index
+                     if(p.getFathers().get(i).equals(n)) {
+                                         System.out.println("\t"+p.getChildren().get(i));
+                                         }
+                                  System.out.println("\nHere is the list to keep track of available names: \n"+p.getChildren());//Providing the user with the list of available names to check family tree
+                              }
+                      
+                           else  //If the name provided by the user is not a mother nor a father
                               System.out.println("Person's name? "+n+"\nMaternal line:\n\t"+ n + "\n\t\t" + p.getMothers().get(z) +"\nPaternal line:\n\t"+n+ "\n\t\t" + p.getFathers().get(z)+
-                              "\n"+"Children:\n\tNo Children."+"\nHere is the list to keep track of available names: \n"+p.getChildren());
+                              "\n"+"Children:\n\tNo Children."+"\nHere is the list to keep track of available names: \n"+p.getChildren()); 
          }
-
       } 
 }
 
