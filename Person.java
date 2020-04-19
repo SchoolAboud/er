@@ -1,14 +1,20 @@
+/*CS 211(B)
+Spring 2020
+4/20/2020
+Majd Chalak, Abdalrahman Shaath, Joey Helf, Richard Le
+This file is used to create a class that constructs a family tree with father, mother, and children.
+*/
 import java.util.*;
 
 public class Person {
 
-private ArrayList<String> Person;
+private ArrayList<String> person;
 
 
 //This constructor will take a family tree constructed array list.
 public Person (ArrayList<String> p) {
 
-this.Person = p;
+this.person = p;
 
 }
 
@@ -16,14 +22,14 @@ this.Person = p;
 //Hence that will allow us to pair the child with their mother accordingly.
 public ArrayList<String> getMothers() {
    
-   ArrayList<String> Mothers = new ArrayList<String>();
-   for (int i=1 ; i<Person.size() ; i=i+3) {
+   ArrayList<String> mothers = new ArrayList<String>();
+   for (int i=1 ; i<person.size() ; i=i+3) {
          
-         Mothers.add(Person.get(i));
+         mothers.add(person.get(i));
      
          
    }
-    return Mothers;
+    return mothers;
 }
 
 
@@ -31,26 +37,26 @@ public ArrayList<String> getMothers() {
 //Hence that will allow us to pair the child with their father accordingly.
 public ArrayList<String> getFathers() {
    
-   ArrayList<String> Fathers = new ArrayList<String>();
-   for (int i=2 ; i<Person.size() ; i=i+3) {
+   ArrayList<String> fathers = new ArrayList<String>();
+   for (int i=2 ; i<person.size() ; i=i+3) {
          
-         Fathers.add(Person.get(i));
+         fathers.add(person.get(i));
 
    }
-    return Fathers;
+    return fathers;
 }
 
 //The following function will filter names. It will create an array list of only the names that have parents.
 //The user will then be asked to pick a name from that list.
 public ArrayList<String> getChildren() {
    
-   ArrayList<String> Children = new ArrayList<String>();
-   for (int i=0 ; i<Person.size() ; i=i+3) {
+   ArrayList<String> children = new ArrayList<String>();
+   for (int i=0 ; i<person.size() ; i=i+3) {
          
-         Children.add(Person.get(i));
+         children.add(person.get(i));
 
    }
-    return Children;
+    return children;
 }
 
 
