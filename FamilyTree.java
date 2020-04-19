@@ -1,3 +1,9 @@
+/*CS 211(B)
+Spring 2020
+4/20/2020
+Majd Chalak, Abdalrahman Shaath, Joey Helf, Richard Le
+This file was made to create a program that takes a file of names, prompts for user input, and outputs a family tree.
+*/
 import java.util.*;
 import java.io.*;
 
@@ -9,11 +15,11 @@ public static void main(String[] args) throws FileNotFoundException {
    //Second list will contain each of these people's names followed by their mother's and their father's name respectively
    //That is the list that will be then used to solve the project
    
-   ArrayList<String> Names = new ArrayList<String>();
-   ArrayList<String> FamTree = new ArrayList<String>();
+   ArrayList<String> names = new ArrayList<String>();
+   ArrayList<String> famTree = new ArrayList<String>();
    
    //First we will introduce the source of the file we will scan from
-   File source = new File("C:\\Users\\Majd\\Desktop\\Bellevue College\\5th Spring Quarter 2020\\CS 211\\Project#1\\tudor.dat");
+   File source = new File("tudor.dat");
    
    //Now we will create the scanner that will scan from that specific file.
    Scanner fileReader = new Scanner(source);
@@ -27,23 +33,23 @@ public static void main(String[] args) throws FileNotFoundException {
           
           if (c!=1) 
           {
-            Names.add(s);
+            names.add(s);
                 if (s.equalsIgnoreCase("end")) //When the scanner spots "END", c will be eqaul to 1
                 {
                 c=1;
-                Names.remove(s); //We will remove the "End" word from the list
+                names.remove(s); //We will remove the "End" word from the list
                 }
            }
             else {
             
-            FamTree.add(s);//We will start scanning the second list
+            famTree.add(s);//We will start scanning the second list
             if (s.equalsIgnoreCase("end")) {
-               FamTree.remove(s);
+               famTree.remove(s);
                }  
             }
           }
           
-         Person p = new Person(FamTree); /*This class will create three array lists in which each element corresponding to 
+         Person p = new Person(famTree); /*This class will create three array lists in which each element corresponding to 
                                          any list will have the same index of another related element in other lists, 
                                          whether it is Mother or Father. For example, a mother's name in the mother's list will have index i,
                                          that index i will be the same for her child. If she has more than one child, 
@@ -67,7 +73,7 @@ public static void main(String[] args) throws FileNotFoundException {
          } 
          int z = p.getChildren().indexOf(n); //Denoting the index corresponding to the name n.
 
-         ArrayList<String> ChildAllocation = new ArrayList<String>();
+         ArrayList<String> childAllocation = new ArrayList<String>();
          
             //We will conduct two if statements, in which we will check if the provided name got listed as mother or father in the "Person" class created
             
