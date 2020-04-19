@@ -18,24 +18,25 @@ public static void main(String[] args) throws FileNotFoundException {
    //Now we will create the scanner that will scan from that specific file.
    Scanner fileReader = new Scanner(source);
    fileReader.useDelimiter(",");
-   int c = 0;
+   int c = 0; //This integer will be used later as "END" word checker.
    String s = "";
    
+   //The following while loop will store the two lists provided in two separate lists, each list ending at the word "END" while excluding it
    while (fileReader.hasNextLine()) {
           s = fileReader.nextLine();
           
           if (c!=1) 
           {
             Names.add(s);
-                if (s.equalsIgnoreCase("end")) 
+                if (s.equalsIgnoreCase("end")) //When the scanner spots "END", c will be eqaul to 1
                 {
                 c=1;
-                Names.remove(s);
+                Names.remove(s); //We will remove the "End" word from the list
                 }
            }
             else {
             
-            FamTree.add(s);
+            FamTree.add(s);//We will start scanning the second list
             if (s.equalsIgnoreCase("end")) {
                FamTree.remove(s);
                }  
